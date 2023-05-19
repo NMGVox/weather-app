@@ -41,3 +41,42 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+#ticker {
+    height: 1.5rem;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 4px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.ticker-text {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	height: 100%;
+	animation: tick-right 15s linear infinite;
+	white-space: nowrap;
+}
+
+.ticker-text li {
+	width: 100%;
+	padding-right: 1rem;
+	border-right: 1px solid black;
+}
+
+
+.ticker-text li:first-of-type {
+	padding-left: 1rem;
+	border-left: 1px solid black;
+}
+
+@keyframes tick-right {
+	0% {
+		transform: translateX(125%);
+	}
+	100% {
+		transform: translateX(-125%);
+	}
+}

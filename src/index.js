@@ -2,6 +2,6 @@ import './style.css';
 import { fetchWeather, whatsthedata } from './components/weather';
 
 window.addEventListener('load', (event => {
-    //fetchWeather();
+    fetchWeather();
     console.log("I fetch weather lolz");
 }));
