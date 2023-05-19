@@ -29,6 +29,7 @@ function setWindSpeed(w) {
 function setRealFeel(f) {
     let li = document.createElement('li');
     li.textContent = `Feels like: ${f} °F`;
+    li.id = 'feel';
     return li;
 }
 

@@ -1,12 +1,13 @@
 import { setTickerText } from "./ticker";
+import placeholder from '.././images/placeholder.png';
 
-let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=Jersey+City';
+let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let data = {};
 let fahrenheit = true;
 
-async function fetchWeather() {
+async function fetchWeather(q) {
     try{
-        let response = await fetch(request, {'mode': 'cors'});
+        let response = await fetch(request + q, {'mode': 'cors'});
         data = await response.json();
         setWeather();
     }
@@ -22,9 +23,28 @@ function setWeather() {
     fahrenheit ? 
         temp_ele.textContent = `${data.current.temp_f} °F` : 
         temp_ele.textContent = `${data.current.temp_c} °C`;
+    let date = new Date(data.current.last_updated);
     document.querySelector('.last-update').textContent = `as of: ${data.current.last_updated}`;
-
-    document.querySelector('#ticker').appendChild(setTickerText(data));
+    let ticker = document.querySelector('#ticker');
+    if(ticker.firstChild) {
+        ticker.firstChild.remove();
+    }
+    ticker.appendChild(setTickerText(data));
+    document.querySelector('.w-icon-small').src = data.current.condition.icon;
 }
 
-export { fetchWeather };
+function switchUnits() {
+    fahrenheit = !fahrenheit;
+    let temp_ele = document.querySelector('#temperature');
+    let feel_ele = document.querySelector('#feel');
+    if(fahrenheit) {
+        temp_ele.textContent = `${data.current.temp_f} °F`;
+        feel_ele.textContent = `Feels like: ${data.current.feelslike_f} °F`;
+        return; 
+    }
+    temp_ele.textContent = `${data.current.temp_c} °C`;
+    feel_ele.textContent = `Feels like: ${data.current.feelslike_c} °C`;
+    return;
+}
+
+export { fetchWeather, switchUnits };
