@@ -116,7 +116,6 @@ body {
 
 .location-wrapper {
 	height:100%;
-	background-color: blueviolet;
 }
 
 .city-state {
@@ -125,6 +124,7 @@ body {
 
 .country {
 	font-size: 1rem;
+	padding-left: .5rem;
 }
 
 
@@ -135,9 +135,11 @@ body {
 	background-color: cadetblue;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	position:relative;
+	box-sizing: border-box;
+	padding: 1rem;
 }
 
 .w-icon-small {
@@ -146,6 +148,12 @@ body {
 	position: absolute;
 	right:10px;
 	top:10px;
+}
+
+.last-update {
+	padding: 1rem;
+	text-align: center;
+	box-sizing: border-box;
 }
 
 #temperature {

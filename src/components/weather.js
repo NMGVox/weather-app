@@ -1,5 +1,6 @@
 import { setTickerText } from "./ticker";
-import placeholder from '.././images/placeholder.png';
+import placeholder from '../images/placeholder.png';
+import { setDate, setLocation, setTemp } from "./setWeatherHelper";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let data = {};
@@ -12,19 +13,17 @@ async function fetchWeather(q) {
         setWeather();
     }
     catch(error) {
+        let query = document.querySelector('#search');
+        query.setCustomValidity('Cannot find a matching location.');
+        query.reportValidity();
         console.log(error);
     }
 }
 
 function setWeather() {
-    document.querySelector('.city-state').textContent = `${data.location.name}, ${data.location.region}`;
-    document.querySelector('.country').textContent = `${data.location.country}`;
-    let temp_ele = document.querySelector('#temperature');
-    fahrenheit ? 
-        temp_ele.textContent = `${data.current.temp_f} °F` : 
-        temp_ele.textContent = `${data.current.temp_c} °C`;
-    let date = new Date(data.current.last_updated);
-    document.querySelector('.last-update').textContent = `as of: ${data.current.last_updated}`;
+    setLocation(data.location.name, data.location.region, data.location.country);
+    setTemp((fahrenheit ? `${data.current.temp_f} °F` : `${data.current.temp_c} °C`));
+    setDate(data.current.last_updated);
     let ticker = document.querySelector('#ticker');
     if(ticker.firstChild) {
         ticker.firstChild.remove();

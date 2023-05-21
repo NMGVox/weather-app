@@ -11,6 +11,12 @@ document.querySelector('#unit-toggle').addEventListener('click', switchUnits);
 document.querySelector('#search-form').addEventListener('submit', (event => {
     event.preventDefault();
     let query = document.querySelector('#search');
-    query = encodeURIComponent(query.value);
-    fetchWeather(encodeURIComponent(query));
+    if(query.value === '') {
+        query.setCustomValidity('Please enter a location.');
+        query.reportValidity();
+        return;
+    }else {
+        query.setCustomValidity('');
+    }
+    fetchWeather(encodeURIComponent(query.value));
 }))
