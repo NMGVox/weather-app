@@ -19,4 +19,8 @@ document.querySelector('#search-form').addEventListener('submit', (event => {
         query.setCustomValidity('');
     }
     fetchWeather(encodeURIComponent(query.value));
-}))
+}));
+
+document.querySelector('#show-weekly').addEventListener('click', (event) => {
+    console.log("Placeholder");
+})

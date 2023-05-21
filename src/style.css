@@ -190,6 +190,24 @@ body {
 	border-left: 1px solid black;
 }
 
+.forecast {
+	min-height: 25vh;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	gap: 4vw;
+	padding: 0 2rem;
+}
+
+.forecast-element {
+	width: 12%;
+	height: 90%;
+	background-color: aqua;
+	flex-shrink: 0;
+	border-radius: 1rem;
+}
+
 @keyframes tick-right {
 	0% {
 		transform: translateX(125%);
