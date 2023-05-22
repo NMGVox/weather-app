@@ -1,5 +1,5 @@
 import './style.css';
-import { fetchWeather, getDailyForecast, getHourlyForecast, switchUnits } from './components/weather';
+import { fetchWeather, getDailyForecast, getHourlyForecast, showForecast, switchUnits } from './components/weather';
 import { clearForecastContainer } from './components/cleanUp';
 
 let daily_forecast_btn = document.querySelector('#show-weekly');
@@ -26,7 +26,7 @@ document.querySelector('#search-form').addEventListener('submit', (event => {
 
 daily_forecast_btn.addEventListener('click', (event)=> {
     clearForecastContainer();
-    getDailyForecast();
+    showForecast(event);
     daily_forecast_btn.disabled = true;
     if(hourly_forecast_btn.disabled) {
         hourly_forecast_btn.disabled = false;
@@ -36,7 +36,7 @@ daily_forecast_btn.addEventListener('click', (event)=> {
 
 hourly_forecast_btn.addEventListener('click', (event) => {
     clearForecastContainer();
-    getHourlyForecast();
+    showForecast(event);
     hourly_forecast_btn.disabled = true;
     if(daily_forecast_btn.disabled) {
         daily_forecast_btn.disabled = false;
