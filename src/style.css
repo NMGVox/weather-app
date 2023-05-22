@@ -190,6 +190,13 @@ body {
 	border-left: 1px solid black;
 }
 
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
 .forecast {
 	min-height: 25vh;
 	background-color: black;
@@ -206,6 +213,34 @@ body {
 	background-color: aqua;
 	flex-shrink: 0;
 	border-radius: 1rem;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.forecast-header {
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+
+.icon-forecast {
+	flex-shrink: 1;
+	height: 40%;
+	aspect-ratio: 1/1;
+	background-color: rgba(240, 255, 255, 0.555);
+	border-radius: 1rem;
+}
+
+.forecast-detail-wrapper {
+	background-color: antiquewhite;
+	border: 1px solid black;
+	border-radius: 4px;
+	width:90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
 }
 
 @keyframes tick-right {

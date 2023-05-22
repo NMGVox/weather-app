@@ -14,7 +14,7 @@ function setTemp(t) {
 
 function setDate(d) {
     let date = dayjs(d, 'YYYY-MMMM-D');
-    document.querySelector('.last-update').textContent = `As of: ${date.toDate()}`;
+    document.querySelector('.last-update').textContent = `Updated: ${date.format('dddd, MMMM D, YYYY h:mm A')}`;
     return;
 }
 

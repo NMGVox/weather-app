@@ -1,16 +1,21 @@
 import { setTickerText } from "./ticker";
-import placeholder from '../images/placeholder.png';
+import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
+import { makeForecastElement } from "./dailyForecast";
+import { computeHours, makeHourlyForecastElement } from "./hourlyForecast";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
+let req_extra = '&days=5&aqi=no&alerts=no'
 let data = {};
 let fahrenheit = true;
 
 async function fetchWeather(q) {
     try{
-        let response = await fetch(request + q, {'mode': 'cors'});
+        let response = await fetch(request + q + req_extra, {'mode': 'cors'});
         data = await response.json();
         setWeather();
+        // getDailyForecast()
+        // getHourlyForecast()
     }
     catch(error) {
         let query = document.querySelector('#search');
@@ -46,4 +51,21 @@ function switchUnits() {
     return;
 }
 
-export { fetchWeather, switchUnits };
+function getDailyForecast() {
+    let forecast_section = document.querySelector('.forecast');
+    (data.forecast.forecastday).forEach(day => {
+        forecast_section.append(makeForecastElement(day));
+    });
+    return;
+}
+
+function getHourlyForecast() {
+    let forecast_section = document.querySelector('.forecast');
+    let hours = computeHours(data);
+    hours.forEach(tick => {
+        forecast_section.appendChild(makeHourlyForecastElement(tick));
+    });
+    return;
+}
+
+export { fetchWeather, switchUnits, getDailyForecast, getHourlyForecast };
