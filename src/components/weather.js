@@ -2,7 +2,6 @@ import { setTickerText } from "./ticker";
 import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
 import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
-//import { computeHours, makeHourlyForecastElement } from "./hourlyForecast";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
@@ -41,19 +40,6 @@ function setWeather() {
     document.querySelector('.w-icon-small').src = data.current.condition.icon;
 }
 
-function switchUnits() {
-    fahrenheit = !fahrenheit;
-    let temp_ele = document.querySelector('#temperature');
-    let feel_ele = document.querySelector('#feel');
-    if(fahrenheit) {
-        temp_ele.textContent = `${data.current.temp_f} °F`;
-        feel_ele.textContent = `Feels like: ${data.current.feelslike_f} °F`;
-        return; 
-    }
-    temp_ele.textContent = `${data.current.temp_c} °C`;
-    feel_ele.textContent = `Feels like: ${data.current.feelslike_c} °C`;
-    return;
-}
 
 function getDailyForecast() {
     daily_forecast = [];
@@ -86,6 +72,47 @@ function showForecast(e) {
             forecast_section.appendChild(element);
         })
     }
+    if(fahrenheit) {
+        (Array.from(document.querySelectorAll('.celsius'))).forEach(ele =>{
+            ele.style.display = 'none';
+        });
+    } else {
+        (Array.from(document.querySelectorAll('.fahrenheit'))).forEach(ele =>{
+            ele.style.display = 'none';
+        });
+    }
+    return;
+}
+
+function switchUnits() {
+    fahrenheit = !fahrenheit;
+    let temp_ele = document.querySelector('#temperature');
+    let feel_ele = document.querySelector('#feel');
+    if(fahrenheit) {
+        temp_ele.textContent = `${data.current.temp_f} °F`;
+        feel_ele.textContent = `Feels like: ${data.current.feelslike_f} °F`;
+        
+        //This is ugly, but for current lack of a better solution, it works.
+        //Hopefully without breaking. 23 May, 2023 14:59
+        (Array.from(document.querySelectorAll('.fahrenheit'))).forEach(ele =>{
+            ele.style.display = 'inline-block';
+        });
+
+        (Array.from(document.querySelectorAll('.celsius'))).forEach(ele =>{
+            ele.style.display = 'none';
+        });
+        return; 
+    }
+    temp_ele.textContent = `${data.current.temp_c} °C`;
+    feel_ele.textContent = `Feels like: ${data.current.feelslike_c} °C`;
+
+    (Array.from(document.querySelectorAll('.fahrenheit'))).forEach(ele =>{
+        ele.style.display = 'none';
+    });
+
+    (Array.from(document.querySelectorAll('.celsius'))).forEach(ele =>{
+        ele.style.display = 'inline-block';
+    });
     return;
 }
 

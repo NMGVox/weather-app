@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-//import { setForecastHeader, setConditionImage, setTemperatureDetail } from "./helpers/forecastEleHelper";
 
 function makeDailyForecastElement(d) {
     //Given day, return div containing weather info for the day of the week
@@ -11,7 +10,7 @@ function makeDailyForecastElement(d) {
 
     forecast_ele.append(setConditionImage(d.day.condition.icon));
 
-    forecast_ele.append(setTemperatureDetail(`${d.day.mintemp_f}° / ${d.day.maxtemp_f}°`));
+    forecast_ele.append(setTemperatureDetail(`${d.day.mintemp_f}°F / ${d.day.maxtemp_f}°F`, `${d.day.mintemp_c}°C / ${d.day.maxtemp_c}°C`));
 
     return forecast_ele;
 }
@@ -25,7 +24,7 @@ function makeHourlyForecastElement(t) {
 
     forecast_ele.appendChild(setConditionImage(t.condition.icon));
 
-    forecast_ele.appendChild(setTemperatureDetail(`${t.temp_f}°`));
+    forecast_ele.appendChild(setTemperatureDetail(`${t.temp_f}° F`, `${t.temp_c}° C`));
 
     return forecast_ele;
 }
@@ -64,14 +63,19 @@ function setConditionImage(i) {
     return cond_img;
 }
 
-function setTemperatureDetail(d) {
+function setTemperatureDetail(f, c) {
     let temp_wrapper = document.createElement('span');
     temp_wrapper.classList.add('forecast-detail-wrapper');
 
-    let details = document.createElement('p');
-    details.textContent = d;
+    let details_f = document.createElement('p');
+    details_f.classList.add('fahrenheit');
+    details_f.textContent = f;
 
-    temp_wrapper.append(details);
+    let details_c = document.createElement('p');
+    details_c.classList.add('celsius');
+    details_c.textContent = c;
+
+    temp_wrapper.append(details_f, details_c);
     return temp_wrapper;
 }
 
