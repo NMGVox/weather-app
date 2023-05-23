@@ -198,13 +198,14 @@ body {
 }
 
 .forecast {
-	min-height: 25vh;
+	height: 0vh;
 	background-color: black;
 	display: flex;
 	align-items: center;
 	overflow-x: auto;
 	gap: 4vw;
 	padding: 0 2rem;
+	transition: all 2s;
 }
 
 .forecast-element {

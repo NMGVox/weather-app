@@ -1,11 +1,18 @@
 import './style.css';
+import './components/widgets/loader.css';
 import { fetchWeather, getDailyForecast, getHourlyForecast, showForecast, switchUnits } from './components/weather';
 import { clearForecastContainer } from './components/cleanUp';
+import { displayLoader } from './components/widgets/load';
 
 let daily_forecast_btn = document.querySelector('#show-weekly');
 let hourly_forecast_btn = document.querySelector('#show-hourly');
 
 window.addEventListener('load', (event => {
+    console.log(localStorage.getItem('current'))
+    if(localStorage.getItem('current')) {
+        fetchWeather(localStorage.getItem('current'));
+        return;
+    }
     fetchWeather('Jersey+City');
 }));
 

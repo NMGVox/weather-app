@@ -1,6 +1,7 @@
 import { setTickerText } from "./ticker";
 import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
+import { displayLoader, removeLoader } from "./widgets/load";
 import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
@@ -11,6 +12,7 @@ let hourly_forecast = [];
 let fahrenheit = true;
 
 async function fetchWeather(q) {
+    displayLoader();
     try{
         //Loading component stuff here
         let response = await fetch(request + q + req_extra, {'mode': 'cors'});
@@ -25,7 +27,13 @@ async function fetchWeather(q) {
         query.reportValidity();
         console.log(error);
     }
-    //Removal of Loading component stuff here
+    removeLoader();
+    try {
+        localStorage.setItem('current', q);
+    }
+    catch(error) {
+        console.log('error');
+    }
 }
 
 function setWeather() {
@@ -81,6 +89,7 @@ function showForecast(e) {
             ele.style.display = 'none';
         });
     }
+    forecast_section.style.height = '25vh';
     return;
 }
 
