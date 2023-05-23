@@ -1,8 +1,8 @@
 import { setTickerText } from "./ticker";
 import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
-import { makeDailyForecastElement } from "./dailyForecast";
-import { computeHours, makeHourlyForecastElement } from "./hourlyForecast";
+import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
+//import { computeHours, makeHourlyForecastElement } from "./hourlyForecast";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
