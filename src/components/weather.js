@@ -3,6 +3,7 @@ import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
 import { displayLoader, removeLoader } from "./widgets/load";
 import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
+import { setCurrentLocal } from "./localHandler";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
@@ -20,6 +21,7 @@ async function fetchWeather(q) {
         setWeather();
         getDailyForecast()
         getHourlyForecast()
+        setCurrentLocal(q);
     }
     catch(error) {
         let query = document.querySelector('#search');
@@ -28,12 +30,6 @@ async function fetchWeather(q) {
         console.log(error);
     }
     removeLoader();
-    try {
-        localStorage.setItem('current', q);
-    }
-    catch(error) {
-        console.log('error');
-    }
 }
 
 function setWeather() {
