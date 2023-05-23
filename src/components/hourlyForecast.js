@@ -1,28 +1,16 @@
 import dayjs from "dayjs";
+import { setForecastHeader, setConditionImage, setTemperatureDetail } from "./helpers/forecastEleHelper";
 
 function makeHourlyForecastElement(t) {
     let forecast_ele = document.createElement('div');
     forecast_ele.classList.add('forecast-element');
-    let header = document.createElement('h1');
+    
     let hour = dayjs(t.time, 'YYYY-MMMM-D');
-    header.classList.add('forecast-header');
-    header.textContent = hour.format('hh:mm A');
+    forecast_ele.appendChild(setForecastHeader(hour.format('dddd, h:mm A')));
 
-    let cond_img = document.createElement('img');
-    cond_img.src = t.condition.icon;
-    cond_img.classList.add('icon-forecast');
+    forecast_ele.appendChild(setConditionImage(t.condition.icon));
 
-    forecast_ele.append(header, cond_img);
-
-    let temp_wrapper = document.createElement('span');
-    temp_wrapper.classList.add('forecast-detail-wrapper');
-
-    let temp = document.createElement('p');
-    temp.textContent = `${t.temp_f}°`;
-
-    temp_wrapper.append(temp);
-
-    forecast_ele.appendChild(temp_wrapper);
+    forecast_ele.appendChild(setTemperatureDetail(`${t.temp_f}°`));
 
     return forecast_ele;
 }
@@ -40,6 +28,7 @@ function computeHours(d) {
         start++;
         if (start > 23) {
             start = 0;
+            day_indx++;
         }
     }
 

@@ -1,7 +1,7 @@
 import { setTickerText } from "./ticker";
 import placeholder from './../images/placeholder.png';
 import { setDate, setLocation, setTemp } from "./setWeatherHelper";
-import { makeForecastElement } from "./dailyForecast";
+import { makeDailyForecastElement } from "./dailyForecast";
 import { computeHours, makeHourlyForecastElement } from "./hourlyForecast";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
@@ -13,6 +13,7 @@ let fahrenheit = true;
 
 async function fetchWeather(q) {
     try{
+        //Loading component stuff here
         let response = await fetch(request + q + req_extra, {'mode': 'cors'});
         data = await response.json();
         setWeather();
@@ -25,6 +26,7 @@ async function fetchWeather(q) {
         query.reportValidity();
         console.log(error);
     }
+    //Removal of Loading component stuff here
 }
 
 function setWeather() {
@@ -57,7 +59,7 @@ function getDailyForecast() {
     daily_forecast = [];
     let forecast_section = document.querySelector('.forecast');
     (data.forecast.forecastday).forEach(day => {
-        daily_forecast.push(makeForecastElement(day));
+        daily_forecast.push(makeDailyForecastElement(day));
     });
     return;
 }
