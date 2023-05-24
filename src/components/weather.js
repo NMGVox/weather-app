@@ -61,6 +61,7 @@ function getHourlyForecast() {
     hourly_forecast = [];
     let forecast_section = document.querySelector('.forecast');
     let hours = computeHours(data);
+    console.log(hours);
     hours.forEach(tick => {
         hourly_forecast.push(makeHourlyForecastElement(tick));
     });

@@ -40,12 +40,12 @@ function computeHours(d) {
     let hour_arr = [];
     
     for(let limit = 24; limit > 0; limit--) {
-        hour_arr.push(d.forecast.forecastday[day_indx].hour[start]);
-        start++;
         if (start > 23) {
             start = 0;
             day_indx++;
         }
+        hour_arr.push(d.forecast.forecastday[day_indx].hour[start]);
+        start++;
     }
 
     return hour_arr;
