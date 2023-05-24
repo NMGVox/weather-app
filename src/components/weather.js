@@ -4,6 +4,7 @@ import { setDate, setLocation, setTemp } from "./setWeatherHelper";
 import { displayLoader, removeLoader } from "./widgets/load";
 import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
 import { setCurrentLocal } from "./localHandler";
+import { clearForecastContainer } from "./cleanUp";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
@@ -19,8 +20,10 @@ async function fetchWeather(q) {
         let response = await fetch(request + q + req_extra, {'mode': 'cors'});
         data = await response.json();
         setWeather();
-        getDailyForecast()
-        getHourlyForecast()
+        clearForecastContainer();
+        getDailyForecast();
+        getHourlyForecast();
+        showForecast();
         setCurrentLocal(q);
     }
     catch(error) {
@@ -65,17 +68,25 @@ function getHourlyForecast() {
 }
 
 
-function showForecast(e) {
+function showForecast() {
     let forecast_section = document.querySelector('.forecast');
-    if(e.target.id === 'show-weekly') {
+    let hourly = document.querySelector('#show-hourly');
+    let weekly = document.querySelector('#show-weekly');
+
+    clearForecastContainer();
+
+    if(weekly.disabled) {
         daily_forecast.forEach(element => {
             forecast_section.appendChild(element);
         });
-    } else {
+    } else if(hourly.disabled) {
         hourly_forecast.forEach(element => {
             forecast_section.appendChild(element);
         })
+    }else {
+        return;
     }
+
     if(fahrenheit) {
         (Array.from(document.querySelectorAll('.celsius'))).forEach(ele =>{
             ele.style.display = 'none';

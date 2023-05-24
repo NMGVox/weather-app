@@ -215,11 +215,13 @@ body {
 
 .favorites-container {
 	height:400px;
-	max-width: 600px;
+	width: 600px;
 	flex-shrink: 1;
 	background-color: aliceblue;
 	border-radius: 1rem;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 }
 
 .favorites-container>h1 {
@@ -228,9 +230,49 @@ body {
 	border-bottom: 1px solid black;
 }
 
+.fav-menu {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-auto-rows: 75px;
+	overflow-y: auto;
+	flex: auto;
+	gap:1rem;
+	padding: 1rem;
+}
+
+.favorite {
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(158, 207, 250);
+	border-radius: 1rem;
+	text-align: center;
+	position: relative;
+	user-select: none;
+}
+
+.remove-fav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 7%;
+	right:5%;
+	font-size: .8rem;
+	padding: 1px 4px;
+	border: 1px solid black;
+	border-radius: 50%;
+}
+
+.remove-fav:hover{
+	cursor: pointer;
+}
+
 .forecast {
+	background-color: rgba(0, 37, 105, 0.466);
 	height: 0vh;
-	background-color: black;
 	display: flex;
 	align-items: center;
 	overflow-x: auto;
