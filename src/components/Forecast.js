@@ -10,7 +10,8 @@ function makeDailyForecastElement(d) {
 
     forecast_ele.append(setConditionImage(d.day.condition.icon));
 
-    forecast_ele.append(setTemperatureDetail(`${d.day.mintemp_f}°F / ${d.day.maxtemp_f}°F`, `${d.day.mintemp_c}°C / ${d.day.maxtemp_c}°C`));
+    forecast_ele.append(setTemperatureDetail(`${Math.round(d.day.mintemp_f)}°F / ${Math.round(d.day.maxtemp_f)}°F`,
+     `${Math.round(d.day.mintemp_c)}°C / ${Math.round(d.day.maxtemp_c)}°C`));
 
     return forecast_ele;
 }
@@ -24,7 +25,8 @@ function makeHourlyForecastElement(t) {
 
     forecast_ele.appendChild(setConditionImage(t.condition.icon));
 
-    forecast_ele.appendChild(setTemperatureDetail(`${t.temp_f}° F`, `${t.temp_c}° C`));
+    forecast_ele.appendChild(setTemperatureDetail(`${Math.round(t.temp_f)}° F`, 
+        `${Math.round(t.temp_c)}° C`));
 
     return forecast_ele;
 }

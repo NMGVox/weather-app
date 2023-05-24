@@ -3,7 +3,7 @@ import './components/widgets/loader.css';
 import fav_icon from './images/fav.svg';
 import { fetchWeather, getDailyForecast, getHourlyForecast, showForecast, switchUnits } from './components/weather';
 import { clearForecastContainer } from './components/cleanUp';
-import { displayLoader } from './components/widgets/load';
+import { setNewFavorite } from './components/widgets/favManager';
 
 let daily_forecast_btn = document.querySelector('#show-weekly');
 let hourly_forecast_btn = document.querySelector('#show-hourly');
@@ -51,3 +51,7 @@ hourly_forecast_btn.addEventListener('click', (event) => {
     }
     return;
 });
+
+document.querySelector('#fav-icon').addEventListener('click', (event) => {
+    setNewFavorite();
+})

@@ -34,7 +34,7 @@ async function fetchWeather(q) {
 
 function setWeather() {
     setLocation(data.location.name, data.location.region, data.location.country);
-    setTemp((fahrenheit ? `${data.current.temp_f} °F` : `${data.current.temp_c} °C`));
+    setTemp((fahrenheit ? `${Math.round(data.current.temp_f)} °F` : `${Math.round(data.current.temp_c)} °C`));
     setDate(data.current.last_updated);
     let ticker = document.querySelector('#ticker');
     if(ticker.firstChild) {
@@ -94,8 +94,8 @@ function switchUnits() {
     let temp_ele = document.querySelector('#temperature');
     let feel_ele = document.querySelector('#feel');
     if(fahrenheit) {
-        temp_ele.textContent = `${data.current.temp_f} °F`;
-        feel_ele.textContent = `Feels like: ${data.current.feelslike_f} °F`;
+        temp_ele.textContent = `${Math.round(data.current.temp_f)} °F`;
+        feel_ele.textContent = `Feels like: ${Math.round(data.current.feelslike_f)} °F`;
         
         //This is ugly, but for current lack of a better solution, it works.
         //Hopefully without breaking. 23 May, 2023 14:59
@@ -108,8 +108,8 @@ function switchUnits() {
         });
         return; 
     }
-    temp_ele.textContent = `${data.current.temp_c} °C`;
-    feel_ele.textContent = `Feels like: ${data.current.feelslike_c} °C`;
+    temp_ele.textContent = `${Math.round(data.current.temp_c)} °C`;
+    feel_ele.textContent = `Feels like: ${Math.round(data.current.feelslike_c)} °C`;
 
     (Array.from(document.querySelectorAll('.fahrenheit'))).forEach(ele =>{
         ele.style.display = 'none';
