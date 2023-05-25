@@ -1,6 +1,7 @@
 import './style.css';
 import './components/widgets/loader.css';
 import fav_icon from './images/fav.svg';
+import search_icon from './images/search.svg';
 import { fetchWeather, getDailyForecast, getHourlyForecast, showForecast, switchUnits } from './components/weather';
 import { clearForecastContainer } from './components/cleanUp';
 import { populateFavorites, setNewFavorite } from './components/widgets/favManager';
@@ -23,6 +24,7 @@ function prepForFetch() {
 
 window.addEventListener('load', (event => {
     document.querySelector('#fav-icon').src = fav_icon;
+    document.querySelector('#search-icon').src = search_icon;
     populateFavorites();
     if(localStorage.getItem('current')) {
         fetchWeather(localStorage.getItem('current'));

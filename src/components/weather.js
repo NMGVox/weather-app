@@ -5,6 +5,7 @@ import { displayLoader, removeLoader } from "./widgets/load";
 import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } from "./Forecast";
 import { setCurrentLocal } from "./localHandler";
 import { clearForecastContainer } from "./cleanUp";
+import { backgroundSwitch } from "./widgets/backgroundControl";
 
 let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
@@ -20,6 +21,7 @@ async function fetchWeather(q) {
         let response = await fetch(request + q + req_extra, {'mode': 'cors'});
         data = await response.json();
         setWeather();
+        backgroundSwitch(Number(data.current.condition.code));
         clearForecastContainer();
         getDailyForecast();
         getHourlyForecast();
@@ -61,7 +63,6 @@ function getHourlyForecast() {
     hourly_forecast = [];
     let forecast_section = document.querySelector('.forecast');
     let hours = computeHours(data);
-    console.log(hours);
     hours.forEach(tick => {
         hourly_forecast.push(makeHourlyForecastElement(tick));
     });
@@ -77,10 +78,12 @@ function showForecast() {
     clearForecastContainer();
 
     if(weekly.disabled) {
+        forecast_section.style.justifyContent = 'center';
         daily_forecast.forEach(element => {
             forecast_section.appendChild(element);
         });
     } else if(hourly.disabled) {
+        forecast_section.style.justifyContent = 'flex-start';
         hourly_forecast.forEach(element => {
             forecast_section.appendChild(element);
         })
