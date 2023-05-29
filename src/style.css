@@ -170,7 +170,7 @@ button:disabled:hover {
 
 .temp-wrapper {
 	height: 100%;
-	width:100%;
+	width: 100%;
 	border-radius: 1rem;
 	background-color: rgba(240, 255, 255, 0.397);
 	display: flex;
@@ -302,8 +302,9 @@ button:disabled:hover {
 	right:5%;
 	font-size: .8rem;
 	padding: 1px 4px;
-	border: 1px solid black;
+	border: 1px solid grey;
 	border-radius: 50%;
+	color: grey;
 }
 
 .remove-fav:hover{
@@ -362,5 +363,71 @@ button:disabled:hover {
 	}
 	100% {
 		transform: translateX(-225%);
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	body{
+		background-attachment: fixed;
+	}
+
+	.main-weather {
+		flex-direction: column;
+	}
+
+	.details-wrapper {
+		grid-template-rows: auto 1fr auto auto;
+		height: auto;
+		width:90%;
+	}
+
+
+	.favorites-container {
+		width:0px;
+		overflow-x:hidden;
+	}
+
+	#ticker {
+		height:100%;
+		width: 70%;
+		margin: 0 auto;
+	}
+
+	.ticker-text {
+		flex-direction: column;
+		animation: none;
+		justify-content: center;
+		align-items: center;
+		white-space: normal;
+		gap:0;
+	}
+
+	.ticker-text li {
+		border-top: 1px solid black;
+		padding-right: 0;
+		padding-top: .4rem;
+		padding-bottom: .4rem;
+		border-right: none;
+		height: 1.5rem;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.4rem;
+	}
+
+	.ticker-text li:first-of-type {
+		padding-left: 0%;
+		border-left: none;
+		border-top: none;
+	}
+
+	.button-container {
+		display: none;
+	} 
+
+	.forecast {
+		height: 500px;
+		flex-direction: column;
+		transition: none;
 	}
 }

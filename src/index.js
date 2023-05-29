@@ -4,6 +4,7 @@ import fav_icon from './images/fav.svg';
 import search_icon from './images/search.svg';
 import { fetchWeather, getDailyForecast, getHourlyForecast, showForecast, switchUnits } from './components/weather';
 import { clearForecastContainer } from './components/cleanUp';
+import { winObserver } from './components/widgets/winSize';
 import { populateFavorites, setNewFavorite } from './components/widgets/favManager';
 
 let daily_forecast_btn = document.querySelector('#show-weekly');
@@ -33,14 +34,14 @@ window.addEventListener('load', (event => {
     fetchWeather('Jersey+City');
 }));
 
-document.querySelector('#unit-toggle').addEventListener('click', switchUnits);
+document.querySelector('#unit-toggle').addEventListener('pointerdown', switchUnits);
 
 document.querySelector('#search-form').addEventListener('submit', (event => {
     event.preventDefault();
     prepForFetch();
 }));
 
-daily_forecast_btn.addEventListener('click', (event)=> {
+daily_forecast_btn.addEventListener('pointerdown', (event)=> {
     daily_forecast_btn.disabled = true;
     if(hourly_forecast_btn.disabled) {
         hourly_forecast_btn.disabled = false;
@@ -50,7 +51,7 @@ daily_forecast_btn.addEventListener('click', (event)=> {
     return;
 });
 
-hourly_forecast_btn.addEventListener('click', (event) => {
+hourly_forecast_btn.addEventListener('pointerdown', (event) => {
     hourly_forecast_btn.disabled = true;
     if(daily_forecast_btn.disabled) {
         daily_forecast_btn.disabled = false;
@@ -60,6 +61,7 @@ hourly_forecast_btn.addEventListener('click', (event) => {
     return;
 });
 
-document.querySelector('#fav-icon').addEventListener('click', (event) => {
+document.querySelector('#fav-icon').addEventListener('pointerdown', (event) => {
     setNewFavorite();
 })
+
