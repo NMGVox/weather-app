@@ -16,6 +16,7 @@ let fahrenheit = true;
 
 async function fetchWeather(q) {
     displayLoader();
+    let e_span = document.querySelector('#error');
     try{
         //Loading component stuff here
         let response = await fetch(request + q + req_extra, {'mode': 'cors'});
@@ -27,11 +28,10 @@ async function fetchWeather(q) {
         getHourlyForecast();
         showForecast();
         setCurrentLocal(q);
+        e_span.textContent = '';
     }
     catch(error) {
-        let query = document.querySelector('#search');
-        query.setCustomValidity('Cannot find a matching location.');
-        query.reportValidity();
+        e_span.textContent = 'Cannot find a matching location.';
         console.log(error);
     }
     removeLoader();
@@ -136,4 +136,4 @@ function switchUnits() {
     return;
 }
 
-export { fetchWeather, switchUnits, getDailyForecast, getHourlyForecast, showForecast };
+export { hourly_forecast, fetchWeather, switchUnits, getDailyForecast, getHourlyForecast, showForecast };

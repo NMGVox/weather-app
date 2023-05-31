@@ -55,6 +55,7 @@ button {
 	border-radius: 1rem;
 	height: 2rem;
 	border: 2px solid rgba(192, 192, 192, 0.486);
+	transition: all 2s;
 }
 
 button:hover {
@@ -93,6 +94,7 @@ button:disabled:hover {
 	display: flex;
 	align-items: center;
 	gap: .5rem;
+	position:relative;
 }
 
 #search-form label {
@@ -122,6 +124,20 @@ button:disabled:hover {
 
 #search-button {
 	width: 5vw;
+}
+
+#error {
+	color: red;
+	position: absolute;
+	left: 10%;
+	top: 90%;
+	font-size: .8rem;
+}
+
+#mobile-faves {
+	height: 2rem;
+	aspect-ratio: 1/1;
+	display:none;
 }
 
 .main-weather {
@@ -162,7 +178,6 @@ button:disabled:hover {
 
 .country {
 	font-size: 1rem;
-	padding-left: .5rem;
 	font-weight: 600;
 	margin-top: 4px;
 }
@@ -183,7 +198,7 @@ button:disabled:hover {
 }
 
 .w-icon-small {
-	height:40px;
+	width:40px;
 	aspect-ratio: 1 /1;
 	position: absolute;
 	right:10px;
@@ -357,6 +372,15 @@ button:disabled:hover {
 	font-size: 1.1rem;
 }
 
+.mobile-hour-forecast {
+	min-height: 200px;
+	background-color: rgba(185, 220, 252, 0.623);
+	display: flex;
+	align-items: center;
+	width: 90%;
+	overflow-x: auto;
+}
+
 @keyframes tick-right {
 	0% {
 		transform: translateX(125%);
@@ -366,13 +390,46 @@ button:disabled:hover {
 	}
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) and (min-width: 601px) {
+	.favorites-container {
+		margin-right: 4rem;
+	}
+	.forecast-element {
+		width: 150px;
+		padding: 0 1rem;
+	}
+	#search-button {
+		width: 100px;
+	}
+	#search {
+		font-size: 1rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
 	body{
 		background-attachment: fixed;
 	}
 
+	#search-icon {
+		height:1.2rem;
+	}
+
+	#search {
+		width: 125px;
+		font-size: .8rem;;
+	}
+
+	#search-button {
+		width: 75px;
+		height:1.5rem;
+	}
+
 	.main-weather {
 		flex-direction: column;
+		gap: 0;
+		flex:content;
+		align-content: flex-start;
 	}
 
 	.details-wrapper {
@@ -381,15 +438,37 @@ button:disabled:hover {
 		width:90%;
 	}
 
+	.city-state {
+		font-size: 1rem;
+	}
+
+	#temperature {
+		font-size: 3rem;
+	}
+
+	.last-update {
+		font-size: .8rem;
+	}
+
+	.w-icon-small {
+		width: 15%;
+	}
 
 	.favorites-container {
 		width:0px;
+		height: 0px;
 		overflow-x:hidden;
+		transition: all 1s;
+		background-color: azure;
+	}
+
+	.favorites-container h1 {
+		font-size: 1rem;
 	}
 
 	#ticker {
 		height:100%;
-		width: 70%;
+		width: 90%;
 		margin: 0 auto;
 	}
 
@@ -412,7 +491,7 @@ button:disabled:hover {
 		display:flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 1.4rem;
+		font-size: 1rem;
 	}
 
 	.ticker-text li:first-of-type {
@@ -421,13 +500,38 @@ button:disabled:hover {
 		border-top: none;
 	}
 
-	.button-container {
-		display: none;
-	} 
+	#show-weekly,
+	#show-hourly {
+		font-size: .7rem;
+	}
 
 	.forecast {
-		height: 500px;
+		height: 0px;
+		width: 80%;
+		transition: all 2s;
 		flex-direction: column;
-		transition: none;
+	}
+
+	.forecast-element {
+		flex-direction: row;
+		width: 90%;
+		height: 35%;
+	}
+
+	.icon-forecast {
+		height: 3rem;
+	}
+
+	.forecast-header {
+		font-size: 1rem;
+	}
+
+	.forecast-detail-wrapper {
+		width: 40%;
+	}
+
+	#error 	{
+		top: 110%;
+		font-size: .7rem;
 	}
 }
