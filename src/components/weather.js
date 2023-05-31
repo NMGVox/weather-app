@@ -7,7 +7,7 @@ import { setCurrentLocal } from "./localHandler";
 import { clearForecastContainer } from "./cleanUp";
 import { backgroundSwitch } from "./widgets/backgroundControl";
 
-let request = 'http://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
+let request = 'https://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
 let data = {};
 let daily_forecast = [];
