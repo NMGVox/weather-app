@@ -30,10 +30,10 @@ window.addEventListener('load', (event => {
     document.querySelector('#fav-icon').src = fav_icon;
     document.querySelector('#search-icon').src = search_icon;
     document.querySelector('#mobile-faves').src = mobile_faves;
-    if(localStorage.getItem('faves')) {
+    if(localStorage.hasOwnProperty('favs')) {
         populateFavorites();
     }
-    if(localStorage.getItem('current')) {
+    if(localStorage.hasOwnProperty('current')) {
         fetchWeather(localStorage.getItem('current'));
         return;
     }
