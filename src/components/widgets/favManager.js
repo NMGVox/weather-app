@@ -1,7 +1,10 @@
 import { fetchWeather } from "../weather";
 
-let favorites = JSON.parse(localStorage.getItem('favs'));
-
+let favorites = [];
+//Check local storage for existing favorites, if they don't exist, set favorites to empty array
+if (localStorage.hasOwnProperty('favs')) {
+    favorites = JSON.parse(localStorage.getItem('favs'));
+}
 
 function setNewFavorite() {
     let query = document.querySelector('.city-state').textContent;
