@@ -48,14 +48,18 @@ body {
 	display: flex;
 	flex-direction: column;
 	background-size: cover;
-	transition: all 2s;
+	transition: flex 2s;
+	background: rgb(70,4,145);
+	background: linear-gradient(115deg, rgba(70,4,145,0.95) 15%,
+ 							rgba(49,4,145,0.98) 43%,
+  							rgba(1,64,117,0.98) 80%
+	);
 }
 
 button {
-	border-radius: 1rem;
+	border-radius: 8px;
 	height: 2rem;
-	border: 2px solid rgba(192, 192, 192, 0.486);
-	transition: all 2s;
+	border: 2px solid white;
 }
 
 button:hover {
@@ -81,6 +85,7 @@ button:disabled:hover {
 	padding: 0rem 3rem;
 	font-size: 1.1rem;
 	font-weight: 500;
+	width: clamp(100px, 200px, 10vw);
 }
 
 .search-area {
@@ -109,7 +114,7 @@ button:disabled:hover {
 #search {
 	height: 1.5rem;
 	width: 25vw;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	padding: .1rem .5rem;
 	border-radius: .2rem;
 	border-style: none;
