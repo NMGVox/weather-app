@@ -19,7 +19,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 12%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -57,6 +57,10 @@ table {
 	--button-disabled: linear-gradient(94deg, rgba(0,0,0,1) 15%, rgba(66,66,66,1) 89%);
 	--button-disabled-text: black;
 	--button-gradient: linear-gradient(133deg, rgba(23,2,51,1) 15%, rgba(68,46,101,1) 89%);
+
+	--fs-reg: clamp(.6rem, .8vw, 1rem);
+	--fs-fore: clamp(.5rem, 1vw, 1rem);
+	--fs-big: clamp(.8rem, 1vw, 1.5rem);
 }
 
 body {
@@ -103,8 +107,8 @@ button:disabled {
 #unit-toggle {
 	margin-left: 1rem;
 	padding: 0rem;
-	font-size: 1.1rem;
-	font-weight: 500;
+	font-size: clamp(.7rem, 1.1rem, 1vw);
+	font-weight: bold;
 	width: clamp(100px, 150px, 10vw);
 }
 
@@ -134,7 +138,7 @@ button:disabled {
 #search {
 	height: 1.5rem;
 	width: 25vw;
-	font-size: 1rem;
+	font-size: var(--fs-reg);
 	padding: .1rem .5rem;
 	border-radius: .2rem;
 	border-style: none;
@@ -154,6 +158,8 @@ button:disabled {
 
 #search-button {
 	width: 5vw;
+	font-size: 1.1rem;
+	font-weight: bold;
 }
 
 #error {
@@ -193,7 +199,7 @@ button:disabled {
 
 .location-wrapper {
 	height:100%;
-	width: 70%;
+	width: 80%;
 	background-color: rgba(218, 218, 218, 0);
 	padding: 4px;
 	border-radius: 1rem;
@@ -201,14 +207,14 @@ button:disabled {
 }
 
 .city-state {
-	font-size: 1.1rem;
+	font-size: var(--fs-big);
 	word-wrap: break-word;
 	font-weight: 600;
 	margin-left: 5%;
 }
 
 .country {
-	font-size: .9rem;
+	font-size: var(--fs-reg);
 	font-weight: 600;
 	margin-top: 4px;
 	margin-left: 5%;
@@ -243,10 +249,11 @@ button:disabled {
 	text-align: center;
 	box-sizing: border-box;
 	text-decoration: underline;
+	font-size: var(--fs-reg);
 }
 
 #temperature {
-	font-size: 4rem;
+	font-size: clamp(2rem, 4rem, 4vw );
 }
 
 #ticker {
@@ -265,6 +272,7 @@ button:disabled {
 	height: 100%;
 	animation: tick-right 15s linear infinite;
 	white-space: nowrap;
+	font-size: var(--fs-reg);
 }
 
 .ticker-text li {
@@ -288,12 +296,10 @@ button:disabled {
 
 #fav-icon {
 	position:absolute;
-	top: 3%;
-	right: 15%;
-	height: 2rem;
+	top: 5%;
+	right: 85%;
+	height: clamp(1rem, 2vw, 5rem);
 	aspect-ratio: 1/1;
-	padding: .5rem;
-	border-radius: 1rem;
 	filter: var(--svg-filter);
 }
 
@@ -315,7 +321,7 @@ button:disabled {
 }
 
 .favorites-container>h1 {
-	font-size: 2.5rem;
+	font-size: clamp(1.5rem, 1.5vw, 2.5rem );
 	padding: 1rem 1rem;
 	border-bottom: 1px solid black;
 }
@@ -341,11 +347,16 @@ button:disabled {
 	text-align: center;
 	position: relative;
 	user-select: none;
-	border: 4px solid var(--secondary-color);
 	padding: 0 .5rem;
 	box-sizing: border-box;
 	overflow-y: hidden;
 	text-overflow: ellipsis;
+	transition: transform .5s ease-in;
+	font-size: var(--fs-reg);
+}
+
+.favorite:hover {
+	transform: scale(110%);
 }
 
 .remove-fav {
@@ -389,7 +400,7 @@ button:disabled {
 }
 
 .forecast-header {
-	font-size: 1.2rem;
+	font-size: var(--fs-fore);
 	font-weight: bold;
 	text-align: center;
 }
@@ -407,7 +418,7 @@ button:disabled {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.1rem;
+	font-size: var(--fs-reg);
 	font-weight: bold;
 }
 
@@ -429,9 +440,21 @@ button:disabled {
 	}
 }
 
-@media only screen and (max-width: 900px) and (min-width: 601px) {
+@media screen and (max-width: 1280px) {
+	.main-weather {
+		gap: 5%;
+	}
+	.details-wrapper {
+		height:250px;
+		grid-template-rows: auto 40% 10%;
+	}
+	.w-icon-small {
+		right:30%;
+		top:1%;
+	}
 	.favorites-container {
 		margin-right: 4rem;
+		height: 50vh;
 	}
 	.forecast-element {
 		width: 150px;
@@ -442,6 +465,39 @@ button:disabled {
 	}
 	#search {
 		font-size: 1rem;
+	}
+	.fav-menu {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+		grid-auto-rows: 50px;
+	}
+
+	/* .favorite {
+		font-size: .7rem;
+	} */
+
+	.remove-fav {
+		top: 5%;
+		right: 3%;
+		font-size: .7rem;
+	}
+
+	#unit-toggle {
+		font-size: .7rem;
+		height: 1.2rem;
+	}
+
+	.forecast-element {
+		height: 75%;
+		width:auto;
+		aspect-ratio: 1 / 1;
+	}
+	
+	.icon-forecast {
+		flex-shrink: 1;
+		height: 30%;
+		aspect-ratio: 1/1;
+		border-radius: 1rem;
 	}
 }
 
@@ -498,7 +554,9 @@ button:disabled {
 		height: 0px;
 		overflow-x:hidden;
 		transition: all 1s;
-		background-color: azure;
+		border-radius: 0;
+		border:none;
+		background-color: #010003ea;
 	}
 
 	.favorites-container h1 {
