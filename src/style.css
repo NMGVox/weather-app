@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'futura';
+	src: url('./fonts/futur.ttf');
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,6 +47,18 @@ table {
 	border-spacing: 0;
 }
 
+:root {
+	--main-gradient: linear-gradient(180deg, rgba(17, 1, 43, 0.842) 37%, rgba(0, 16, 59, 0.842) 99%);
+	--svg-filter: invert(99%) sepia(3%) saturate(1%) hue-rotate(117deg) brightness(119%) contrast(100%);
+	--main-font-color: #f5f3ff;
+	--secondary-color: #0100031c;
+	--tertiary-color: #1e073794;
+	--button-color: #1E0737;
+	--button-disabled: linear-gradient(94deg, rgba(0,0,0,1) 15%, rgba(66,66,66,1) 89%);
+	--button-disabled-text: black;
+	--button-gradient: linear-gradient(133deg, rgba(23,2,51,1) 15%, rgba(68,46,101,1) 89%);
+}
+
 body {
 	height: 100vh;
 	width: 100%;
@@ -49,17 +66,17 @@ body {
 	flex-direction: column;
 	background-size: cover;
 	transition: flex 2s;
-	background: rgb(70,4,145);
-	background: linear-gradient(115deg, rgba(70,4,145,0.95) 15%,
- 							rgba(49,4,145,0.98) 43%,
-  							rgba(1,64,117,0.98) 80%
-	);
+	background: var(--main-gradient), url(./images/mountains.jpg);
+	background-size: cover;
+	font-family: 'futura', Arial, Helvetica, sans-serif;
 }
 
 button {
+	border:none;
 	border-radius: 8px;
 	height: 2rem;
-	border: 2px solid white;
+	background: var(--button-gradient);
+	color: var(--main-font-color);
 }
 
 button:hover {
@@ -70,27 +87,29 @@ button:disabled:hover {
 	cursor: default;
 }
 
+button:disabled {
+	background: var(--button-disabled);
+	color: rgb(150, 150, 150);
+}
+
 .heading {
 	display:flex;
 	align-items: center;
 	height: 8vh;
 	justify-content: space-between;
 	flex:none;
-	background-color: rgba(0, 0, 0, 0.616);
 }
 
 #unit-toggle {
 	margin-left: 1rem;
-	background-color: rgba(231, 231, 231, 0.493);
-	padding: 0rem 3rem;
+	padding: 0rem;
 	font-size: 1.1rem;
 	font-weight: 500;
-	width: clamp(100px, 200px, 10vw);
+	width: clamp(100px, 150px, 10vw);
 }
 
 .search-area {
 	display:flex;
-	gap: 1rem;
 	align-items: center;
 	margin-right: 1rem;
 }
@@ -98,7 +117,7 @@ button:disabled:hover {
 #search-form {
 	display: flex;
 	align-items: center;
-	gap: .5rem;
+	gap: 1rem;
 	position:relative;
 }
 
@@ -109,6 +128,7 @@ button:disabled:hover {
 
 #search-icon {
 	height: 2rem;
+	filter: var(--svg-filter);
 }
 
 #search {
@@ -118,9 +138,14 @@ button:disabled:hover {
 	padding: .1rem .5rem;
 	border-radius: .2rem;
 	border-style: none;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.445);
 	box-sizing: border-box;
 	background-color: transparent;
+	color: var(--main-font-color);
+}
+
+#search::placeholder {
+	color:var(--main-font-color);
 }
 
 #search:focus {
@@ -150,13 +175,12 @@ button:disabled:hover {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10%;
-	background-color: rgba(0, 0, 0, 0.527);
+	gap: 15%;
 }
 
 .details-wrapper{
-	height: 400px;
-	aspect-ratio: 1 / 1;
+	height: 300px;
+	width: 400px;
 	background-color: rgba(207, 230, 250, 0);
 	position:relative;
 	border-radius: 1rem;
@@ -164,27 +188,30 @@ button:disabled:hover {
 	padding: 1rem 50px;
 	display: grid;
 	grid-template-rows: auto 1fr 10%;
-	gap: 1rem;
+	gap: .5rem;
 }
 
 .location-wrapper {
 	height:100%;
-	width: 90%;
-	background-color: rgba(218, 218, 218, 0.411);
+	width: 70%;
+	background-color: rgba(218, 218, 218, 0);
 	padding: 4px;
 	border-radius: 1rem;
+	color:var(--main-font-color);
 }
 
 .city-state {
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	word-wrap: break-word;
 	font-weight: 600;
+	margin-left: 5%;
 }
 
 .country {
-	font-size: 1rem;
+	font-size: .9rem;
 	font-weight: 600;
 	margin-top: 4px;
+	margin-left: 5%;
 }
 
 
@@ -192,14 +219,15 @@ button:disabled:hover {
 	height: 100%;
 	width: 100%;
 	border-radius: 1rem;
-	background-color: rgba(240, 255, 255, 0.397);
+	background-color: #9e788f00;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	position:relative;
 	box-sizing: border-box;
 	padding: 1rem;
+	color:var(--main-font-color);
 }
 
 .w-icon-small {
@@ -211,23 +239,23 @@ button:disabled:hover {
 }
 
 .last-update {
-	padding: 1rem;
+	padding: 1rem 0;
 	text-align: center;
 	box-sizing: border-box;
 	text-decoration: underline;
 }
 
 #temperature {
-	font-size: 5rem;
+	font-size: 4rem;
 }
 
 #ticker {
     height: 1.5rem;
     width: 100%;
-	background-color: rgba(240, 255, 255, 0.397);
     border-radius: 4px;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	color:var(--main-font-color);
 }
 
 .ticker-text {
@@ -237,19 +265,18 @@ button:disabled:hover {
 	height: 100%;
 	animation: tick-right 15s linear infinite;
 	white-space: nowrap;
-	
 }
 
 .ticker-text li {
 	width: 100%;
 	padding-right: 1rem;
-	border-right: 1px solid black;
+	border-right: 1px solid var(--main-font-color);
 }
 
 
 .ticker-text li:first-of-type {
 	padding-left: 1rem;
-	border-left: 1px solid black;
+	border-left: 1px solid var(--main-font-color);
 }
 
 .button-container {
@@ -262,11 +289,12 @@ button:disabled:hover {
 #fav-icon {
 	position:absolute;
 	top: 3%;
-	right: 5%;
+	right: 15%;
 	height: 2rem;
 	aspect-ratio: 1/1;
 	padding: .5rem;
 	border-radius: 1rem;
+	filter: var(--svg-filter);
 }
 
 #fav-icon:hover {
@@ -277,11 +305,13 @@ button:disabled:hover {
 	height:400px;
 	width: 600px;
 	flex-shrink: 1;
-	background-color: rgba(207, 230, 250, 0.589);
 	border-radius: 1rem;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+	color: var(--main-font-color);
+	background-color: var(--secondary-color);
+	border: 2px solid var(--secondary-color);
 }
 
 .favorites-container>h1 {
@@ -306,11 +336,16 @@ button:disabled:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(185, 220, 252, 0.623);
+	background-color: var(--tertiary-color);
 	border-radius: 1rem;
 	text-align: center;
 	position: relative;
 	user-select: none;
+	border: 4px solid var(--secondary-color);
+	padding: 0 .5rem;
+	box-sizing: border-box;
+	overflow-y: hidden;
+	text-overflow: ellipsis;
 }
 
 .remove-fav {
@@ -320,10 +355,8 @@ button:disabled:hover {
 	position: absolute;
 	top: 7%;
 	right:5%;
-	font-size: .8rem;
+	font-size: .9rem;
 	padding: 1px 4px;
-	border: 1px solid grey;
-	border-radius: 50%;
 	color: grey;
 }
 
@@ -344,8 +377,9 @@ button:disabled:hover {
 
 .forecast-element {
 	width: 12%;
-	height: 90%;
-	background-color: rgba(233, 233, 233, 0.685);
+	height: 80%;
+	background-color: #71677c41;
+	color: var(--main-font-color);
 	flex-shrink: 0;
 	border-radius: 1rem;
 	display:flex;
@@ -368,13 +402,13 @@ button:disabled:hover {
 }
 
 .forecast-detail-wrapper {
-	border: 1px solid rgba(173, 173, 173, 0.733);
 	border-radius: 4px;
 	width:90%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1.1rem;
+	font-weight: bold;
 }
 
 .mobile-hour-forecast {
@@ -391,7 +425,7 @@ button:disabled:hover {
 		transform: translateX(125%);
 	}
 	100% {
-		transform: translateX(-225%);
+		transform: translateX(-275%);
 	}
 }
 
