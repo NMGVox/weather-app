@@ -131,7 +131,7 @@ button:disabled {
 }
 
 #search-icon {
-	height: 2rem;
+	height: clamp(.9rem, 1.2vw, 2rem);
 	filter: var(--svg-filter);
 }
 
@@ -204,6 +204,12 @@ button:disabled {
 	padding: 4px;
 	border-radius: 1rem;
 	color:var(--main-font-color);
+}
+
+.cs-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .city-state {
@@ -295,9 +301,6 @@ button:disabled {
 }
 
 #fav-icon {
-	position:absolute;
-	top: 5%;
-	right: 85%;
 	height: clamp(1rem, 2vw, 5rem);
 	aspect-ratio: 1/1;
 	filter: var(--svg-filter);
@@ -321,7 +324,7 @@ button:disabled {
 }
 
 .favorites-container>h1 {
-	font-size: clamp(1.5rem, 1.5vw, 2.5rem );
+	font-size: clamp(1rem, 2vw, 2.5rem );
 	padding: 1rem 1rem;
 	border-bottom: 1px solid black;
 }
@@ -375,14 +378,25 @@ button:disabled {
 	cursor: pointer;
 }
 
+.forecastwrapper {
+	height:0vh;
+	transition: height .5s;
+}
+
+.collapser {
+	height: 10%;
+	width: 25px;
+	background-color: rgba(0, 0, 0, 0.527);
+	overflow:hidden;
+}
+
 .forecast {
-	height: 0vh;
+	height: 90%;
 	display: flex;
 	align-items: center;
 	overflow-x: auto;
 	gap: 4vw;
 	padding: 0 2rem;
-	transition: all 2s;
 	background-color: rgba(0, 0, 0, 0.527);
 }
 
@@ -504,6 +518,10 @@ button:disabled {
 @media only screen and (max-width: 600px) {
 	body{
 		background-attachment: fixed;
+	}
+
+	#search-form {
+		gap: .5rem;
 	}
 
 	#search-icon {
@@ -632,3 +650,25 @@ button:disabled {
 		font-size: .7rem;
 	}
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #856dad #090111;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 3px;
+	height: 3px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #090111;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #856dad;
+    border-radius: 10px;
+  }

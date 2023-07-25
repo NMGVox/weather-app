@@ -21,7 +21,7 @@ let winObserver = new ResizeObserver(entries => {
             let target_div = document.querySelector('.heading'); 
             target_div.append(search_div);
             let forecast_sect = document.querySelector('.forecast');
-            document.querySelector('body').append(forecast_sect);
+            document.querySelector('.forecastwrapper').append(forecast_sect);
 
             document.querySelector('#mobile-faves').style.display = 'none';
             let fav_container = document.querySelector('.favorites-container');

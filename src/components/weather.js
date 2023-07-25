@@ -6,6 +6,8 @@ import { makeDailyForecastElement, computeHours, makeHourlyForecastElement  } fr
 import { setCurrentLocal } from "./localHandler";
 import { clearForecastContainer } from "./cleanUp";
 import { backgroundSwitch } from "./widgets/backgroundControl";
+import { collapseForecast } from "./collapser";
+
 
 let request = 'https://api.weatherapi.com/v1/forecast.json?key=1b054972cb384d789c5195202231505&q=';
 let req_extra = '&days=5&aqi=no&alerts=no'
@@ -69,8 +71,8 @@ function getHourlyForecast() {
     return;
 }
 
-
 function showForecast() {
+    let forecast_wrapper = document.querySelector('.forecastwrapper');
     let forecast_section = document.querySelector('.forecast');
     let hourly = document.querySelector('#show-hourly');
     let weekly = document.querySelector('#show-weekly');
@@ -100,7 +102,9 @@ function showForecast() {
             ele.style.display = 'none';
         });
     }
-    forecast_section.style.height = '25vh';
+    forecast_wrapper.style.height = '25vh';
+    let collapser = document.querySelector('.collapser');
+    collapser.addEventListener('pointerdown', collapseForecast);
     return;
 }
 
@@ -112,7 +116,7 @@ function switchUnits() {
         temp_ele.textContent = `${Math.round(data.current.temp_f)} °F`;
         feel_ele.textContent = `Feels like: ${Math.round(data.current.feelslike_f)} °F`;
         
-        //This is ugly, but for current lack of a better solution, it works.
+        //This is ugly, but for current lack of a better solution, it works
         //Hopefully without breaking. 23 May, 2023 14:59
         (Array.from(document.querySelectorAll('.fahrenheit'))).forEach(ele =>{
             ele.style.display = 'inline-block';
