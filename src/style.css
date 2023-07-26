@@ -61,6 +61,7 @@ table {
 	--fs-reg: clamp(.6rem, .8vw, 1rem);
 	--fs-fore: clamp(.5rem, 1vw, 1rem);
 	--fs-big: clamp(.8rem, 1vw, 1.5rem);
+	--fs-font-small: clamp(.5rem, .8vw, .9rem);
 }
 
 body {
@@ -107,9 +108,10 @@ button:disabled {
 #unit-toggle {
 	margin-left: 1rem;
 	padding: 0rem;
-	font-size: clamp(.7rem, 1.1rem, 1vw);
+	font-size: clamp(.7rem, 1vw, 1.2rem);
 	font-weight: bold;
-	width: clamp(100px, 150px, 10vw);
+	width: clamp(100px, 12.8vw, 300px);
+	height: 40px;
 }
 
 .search-area {
@@ -199,7 +201,7 @@ button:disabled {
 
 .location-wrapper {
 	height:100%;
-	width: 80%;
+	width: 100%;
 	background-color: rgba(218, 218, 218, 0);
 	padding: 4px;
 	border-radius: 1rem;
@@ -242,12 +244,15 @@ button:disabled {
 	color:var(--main-font-color);
 }
 
+.temp-icon-wrapper {
+	display:flex;
+	width: 100%;
+	align-items: center;
+}
+
 .w-icon-small {
-	width:40px;
+	width:clamp(2rem, 2vw,  200px);
 	aspect-ratio: 1 /1;
-	position: absolute;
-	right:10px;
-	top:10px;
 }
 
 .last-update {
@@ -259,7 +264,7 @@ button:disabled {
 }
 
 #temperature {
-	font-size: clamp(2rem, 4rem, 4vw );
+	font-size: clamp(2rem, 4vw, 5rem);
 }
 
 #ticker {
@@ -298,6 +303,11 @@ button:disabled {
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+}
+
+#show-weekly,
+#show-hourly {
+	font-size: var(--fs-font-small);
 }
 
 #fav-icon {
@@ -385,9 +395,13 @@ button:disabled {
 
 .collapser {
 	height: 10%;
-	width: 25px;
+	aspect-ratio: 1 / 1;
 	background-color: rgba(0, 0, 0, 0.527);
 	overflow:hidden;
+	background-image: url('./images/arrow-collapse-down.svg');
+	filter: var(--svg-filter);
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .forecast {
@@ -486,19 +500,10 @@ button:disabled {
 		grid-auto-rows: 50px;
 	}
 
-	/* .favorite {
-		font-size: .7rem;
-	} */
-
 	.remove-fav {
 		top: 5%;
 		right: 3%;
 		font-size: .7rem;
-	}
-
-	#unit-toggle {
-		font-size: .7rem;
-		height: 1.2rem;
 	}
 
 	.forecast-element {
@@ -520,8 +525,13 @@ button:disabled {
 		background-attachment: fixed;
 	}
 
+	.search-area {
+		margin-right: 0;
+	}
+
 	#search-form {
 		gap: .5rem;
+		width:100%;
 	}
 
 	#search-icon {
@@ -530,7 +540,7 @@ button:disabled {
 
 	#search {
 		width: 125px;
-		font-size: .8rem;;
+		font-size: .8rem;
 	}
 
 	#search-button {
@@ -548,19 +558,31 @@ button:disabled {
 	.details-wrapper {
 		grid-template-rows: auto 1fr auto auto;
 		height: auto;
-		width:90%;
+		width:100%;
+	}
+
+	.cs-wrapper {
+		justify-content: center;
+		width: 100%;
+	}
+
+	.temp-wrapper {
+		align-items: center;
+		justify-content: center;
+	}
+
+	.temp-icon-wrapper {
+		justify-content: center;
 	}
 
 	.city-state {
 		font-size: 1rem;
+		margin-left: 0;
 	}
 
-	#temperature {
-		font-size: 3rem;
-	}
-
-	.last-update {
-		font-size: .8rem;
+	.country {
+		text-align: center;
+		margin-left: 0;
 	}
 
 	.w-icon-small {
@@ -615,11 +637,6 @@ button:disabled {
 		border-top: none;
 	}
 
-	#show-weekly,
-	#show-hourly {
-		font-size: .7rem;
-	}
-
 	.forecast {
 		height: 0px;
 		width: 80%;
@@ -660,8 +677,8 @@ button:disabled {
 
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
-    width: 3px;
-	height: 3px;
+    width: 4px;
+	height: 7px;
   }
 
   *::-webkit-scrollbar-track {
