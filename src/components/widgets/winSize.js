@@ -6,7 +6,7 @@ let winObserver = new ResizeObserver(entries => {
             let search_div = document.querySelector('.search-area');
             let target_div = document.querySelector('.main-weather'); 
             target_div.prepend(search_div);
-            let forecast_sect = document.querySelector('.forecast');
+            let forecast_sect = document.querySelector('.forecastwrapper');
             target_div.append(forecast_sect);
             let fav_container = document.querySelector('.favorites-container');
             fav_container.style.position = 'absolute';

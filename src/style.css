@@ -398,8 +398,7 @@ button:disabled {
 	aspect-ratio: 1 / 1;
 	background-color: rgba(0, 0, 0, 0.527);
 	overflow:hidden;
-	background-image: url('./images/arrow-collapse-down.svg');
-	filter: var(--svg-filter);
+	background-image: url('./images/double-arrow-down-svgrepo-com.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -545,7 +544,8 @@ button:disabled {
 
 	#search-button {
 		width: 75px;
-		height:1.5rem;
+		height:1rem;
+		font-size: .8rem;
 	}
 
 	.main-weather {
@@ -637,20 +637,27 @@ button:disabled {
 		border-top: none;
 	}
 
+	.forecastwrapper {
+		width: 60%;
+	}
+
 	.forecast {
-		height: 0px;
-		width: 80%;
-		transition: all 2s;
+		height: 100%;
+		width: 100%;
 		flex-direction: column;
+		box-sizing: border-box;
+		overflow-x: hidden;
 	}
 
 	.forecast-element {
 		flex-direction: row;
 		width: 90%;
-		height: 35%;
+		height: 25%;
+		justify-content: space-between;
+		align-items: center;
 	}
 
-	.icon-forecast {
+	/* .icon-forecast {
 		height: 3rem;
 	}
 
@@ -660,7 +667,7 @@ button:disabled {
 
 	.forecast-detail-wrapper {
 		width: 40%;
-	}
+	} */
 
 	#error 	{
 		top: 110%;
