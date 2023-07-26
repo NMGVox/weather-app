@@ -6,22 +6,22 @@ let winObserver = new ResizeObserver(entries => {
             let search_div = document.querySelector('.search-area');
             let target_div = document.querySelector('.main-weather'); 
             target_div.prepend(search_div);
-            let forecast_sect = document.querySelector('.forecastwrapper');
-            target_div.append(forecast_sect);
+            let forecastwrapper = document.querySelector('.forecastwrapper');
+            target_div.append(forecastwrapper);
             let fav_container = document.querySelector('.favorites-container');
             fav_container.style.position = 'absolute';
             document.querySelector('#mobile-faves').style.display = 'block';
             console.log(document.querySelector('#mobile-faves').clientTop);
             fav_container.style.top = `8vh`;
-            fav_container.style.left = `${entry.target.clientWidth - 200}px`;
-            fav_container.style.width = `200px`;
+            fav_container.style.left = `0px`;
+            fav_container.style.width = `100%`;
         };
         if ( entry.target.clientWidth > 600) {
             let search_div = document.querySelector('.search-area');
             let target_div = document.querySelector('.heading'); 
             target_div.append(search_div);
-            let forecast_sect = document.querySelector('.forecast');
-            document.querySelector('.forecastwrapper').append(forecast_sect);
+            let forecastwrapper = document.querySelector('.forecastwrapper');
+            document.querySelector('body').append(forecastwrapper);
 
             document.querySelector('#mobile-faves').style.display = 'none';
             let fav_container = document.querySelector('.favorites-container');

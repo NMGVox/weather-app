@@ -59,7 +59,7 @@ table {
 	--button-gradient: linear-gradient(133deg, rgba(23,2,51,1) 15%, rgba(68,46,101,1) 89%);
 
 	--fs-reg: clamp(.6rem, .8vw, 1rem);
-	--fs-fore: clamp(.5rem, 1vw, 1rem);
+	--fs-fore: clamp(.8rem, 1.5vw, 1.2rem);
 	--fs-big: clamp(.8rem, 1vw, 1.5rem);
 	--fs-font-small: clamp(.5rem, .8vw, .9rem);
 }
@@ -112,6 +112,8 @@ button:disabled {
 	font-weight: bold;
 	width: clamp(100px, 12.8vw, 300px);
 	height: 40px;
+	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, 0.274);
 }
 
 .search-area {
@@ -176,6 +178,8 @@ button:disabled {
 	height: 2rem;
 	aspect-ratio: 1/1;
 	display:none;
+	filter: var(--svg-filter);
+	margin-right: 4vw;
 }
 
 .main-weather {
@@ -544,8 +548,10 @@ button:disabled {
 
 	#search-button {
 		width: 75px;
-		height:1rem;
-		font-size: .8rem;
+		height:1.1rem;
+		font-size: .7rem;
+		border-radius: 4px;
+		border: 1px solid rgba(255, 255, 255, 0.315);
 	}
 
 	.main-weather {
@@ -578,6 +584,7 @@ button:disabled {
 	.city-state {
 		font-size: 1rem;
 		margin-left: 0;
+		text-align: center;
 	}
 
 	.country {
