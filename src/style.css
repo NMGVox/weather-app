@@ -77,6 +77,7 @@ body {
 }
 
 button {
+	appearance: none;
 	border:none;
 	border-radius: 8px;
 	height: 2rem;
@@ -111,7 +112,7 @@ button:disabled {
 	font-size: clamp(.7rem, 1vw, 1.2rem);
 	font-weight: bold;
 	width: clamp(100px, 12.8vw, 300px);
-	height: 40px;
+	height: clamp(16px, 4vh, 32px);
 	border-radius: 4px;
 	border: 1px solid rgba(255, 255, 255, 0.274);
 }
@@ -162,8 +163,10 @@ button:disabled {
 
 #search-button {
 	width: 5vw;
-	font-size: 1.1rem;
+	height: clamp(16px, 4vh, 32px);
+	font-size: clamp(.7rem, 1vw, 1.2rem);
 	font-weight: bold;
+	border: 1px solid rgba(255, 255, 255, 0.274);
 }
 
 #error {
