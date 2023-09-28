@@ -12,4 +12,6 @@ CSS
 JavaScript
 Node.JS
 
-**Demo**
+![weather](https://github.com/NMGVox/weather-app/assets/87345234/6a48b46b-87bd-4fc1-8f82-b571785f6781)
+
+[**Demo**](https://nmgvox.github.io/weather-app/ "Weather App")
